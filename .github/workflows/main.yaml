@@ -36,7 +36,7 @@ jobs:
 
       - name: Testleri detayli çaliştir
         run: |
-          pytest --disable-warnings -v tests/test.py
+          pytest --disable-warnings -v test/test.py
 
       - name: Testlerin sonucu
         run: |
