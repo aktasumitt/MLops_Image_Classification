@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-custom {
+            background-color: #ff6b6b;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #ff4757;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Upload Images for Prediction</h1>
+        
+        <!-- Upload Form -->
+        <form method="POST" enctype="multipart/form-data" class="mb-4">
+            <input type="file" name="files" multiple class="form-control mb-3">
+            <button type="submit" name="action" value="upload" class="btn btn-success">Upload</button>
+        </form>
+        <p>{{ upload_message }}</p>
+
+        {% if images %}
+            <h2 class="mb-3">Uploaded Images</h2>
+            <form method="POST">
+                <div class="row">
+                    {% for img in images %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card p-3">
+                                <img src="{{ url_for('uploaded_file', filename=img) }}" class="img-fluid rounded">
+                                <p class="mt-2"><strong>Prediction:</strong></p>
+                                <ul class="list-group">
+                                    {% if results %}
+                                        {% for pred in results[loop.index0] %}
+                                            <li class="list-group-item">{{ pred }}</li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li class="list-group-item">No Prediction</li>
+                                    {% endif %}
+                                </ul>
+                                <input type="checkbox" name="delete_files" value="{{ img }}"> Delete
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" name="action" value="predict" class="btn btn-primary mt-3">Predict</button>
+                <button type="submit" name="action" value="delete" class="btn btn-danger mt-3">Delete Selected</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/

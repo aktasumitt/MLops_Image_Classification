@@ -1,0 +1,66 @@
+stages:           
+  data_ingestion:
+    cmd: python -m src.pipeline.data_ingestion_pipeline
+    deps:
+      - C:/Users/umtak/Downloads/archive.zip
+      - src/pipeline/data_ingestion_pipeline.py
+      - src/components/data_ingestion/data_ingestion.py
+      - src/utils.py
+      - src/config/
+      - src/constant/
+    outs:
+      - local_data/
+
+  data_transformation:
+    cmd: python -m src.pipeline.data_transformation_pipeline
+    deps:
+      - local_data/
+      - src/pipeline/data_transformation_pipeline.py
+      - src/components/data_transformation/
+      - src/utils.py
+      - src/config/
+      - src/constant/
+    outs:
+      - artifacts/data_transformed/
+
+  model_transformation:
+    cmd: python -m src.pipeline.model_pipeline
+    deps:
+      - src/pipeline/model_pipeline.py
+      - src/components/model/
+      - src/utils.py
+      - src/config/
+      - src/constant/
+    outs:
+      - artifacts/model/model.pkl
+
+  training:
+    cmd: python -m src.pipeline.training_pipeline
+    deps:
+      - artifacts/data_transformed/train_dataset.pkl
+      - artifacts/data_transformed/valid_dataset.pkl
+      - artifacts/model/model.pkl
+      - src/pipeline/training_pipeline.py
+      - src/components/training/
+      - src/utils.py
+      - src/config/
+      - src/constant/
+
+    outs:
+      - results/train_results.json
+      - callbacks/final_model/final_model.pkl
+      - callbacks/checkpoints/checkpoint_last.pth.tar
+
+  testing:
+    cmd: python -m src.pipeline.test_pipeline
+    deps:
+      - artifacts/data_transformed/train_dataset.pkl
+      - callbacks/final_model/final_model.pkl
+      - src/pipeline/test_pipeline.py
+      - src/components/testing/
+      - src/utils.py
+      - src/config/
+      - src/constant/
+
+    outs:
+      - results/test_results.json

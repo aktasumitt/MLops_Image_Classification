@@ -1,0 +1,9 @@
+venv/
+all_data/
+logs/
+artifacts/
+/local_data
+/callbacks
+results/
+__pycache__/
+*.pyc
