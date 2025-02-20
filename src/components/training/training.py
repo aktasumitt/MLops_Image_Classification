@@ -12,8 +12,7 @@ import subprocess
 from src.entity.config_entity import TrainingConfig
 
 import dagshub
-dagshub.init(repo_owner='umitaktas', repo_name='Mlops_Classification_Project', mlflow=True)
-
+dagshub.init(repo_owner='umitaktas', repo_name='MLops_Image_Classification', mlflow=True)
 
 class Training():
     
@@ -111,7 +110,7 @@ class Training():
         try:
             
            # uri for mlflow track url in dagshub or local host
-            uri="https://dagshub.com/umitaktas/Mlops_Classification_Project.mlflow"   # for dagshub
+            uri="https://dagshub.com/umitaktas/MLops_Image_Classification.mlflow"   # for dagshub
           
             # mlflow ui and other apps dont overlap
             # subprocess.Popen(["mlflow","ui"])
