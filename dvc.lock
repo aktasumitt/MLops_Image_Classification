@@ -120,8 +120,8 @@ stages:
       size: 41992849
     - path: src/components/training/
       hash: md5
-      md5: 041ded8c0ef6c7d0a0d6206d59e20cea.dir
-      size: 9910
+      md5: 3f341a7dc397f1a58bebb6c35dd574e4.dir
+      size: 9904
       nfiles: 4
     - path: src/config/
       hash: md5
@@ -144,16 +144,16 @@ stages:
     outs:
     - path: callbacks/checkpoints/checkpoint_last.pth.tar
       hash: md5
-      md5: e2b352491cdb4c6b586717afc3353ed5
+      md5: e14429ae26f6d804702fe13d994a415b
       size: 125952458
     - path: callbacks/final_model/final_model.pkl
       hash: md5
-      md5: 936d87cee325f2049c3fe2ebec20fcce
+      md5: afa279150f392aa02d5f23ff054e71bf
       size: 41992917
     - path: results/train_results.json
       hash: md5
-      md5: cf1ffcac4dbd9b1d5d8ed0c9b9ff2f94
-      size: 881
+      md5: 4125cea4099c627ff863833cd025a388
+      size: 887
   testing:
     cmd: python -m src.pipeline.test_pipeline
     deps:
@@ -163,7 +163,7 @@ stages:
       size: 936747
     - path: callbacks/final_model/final_model.pkl
       hash: md5
-      md5: 936d87cee325f2049c3fe2ebec20fcce
+      md5: afa279150f392aa02d5f23ff054e71bf
       size: 41992917
     - path: src/components/testing/
       hash: md5
@@ -191,5 +191,5 @@ stages:
     outs:
     - path: results/test_results.json
       hash: md5
-      md5: 0dbd8189ba874309bc629c4710d0ca90
-      size: 64
+      md5: 77aec1ba21d601aaa0680bf19cf82dcc
+      size: 65
