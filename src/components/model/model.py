@@ -12,18 +12,17 @@ class CNN_Model(nn.Module):
         self.channel_size = channel_size
         self.label_size = label_size
         self.down_block1 = self.down_block(channel_size, 64, 3, 1)
-        self.down_block2 = self.down_block(64, 128, 2, 1)
-        self.down_block3 = self.down_block(128, 256, 3, 1)
+        self.down_block3 = self.down_block(64, 128, 3, 1)
 
-        self.last_conv = nn.Sequential(nn.Conv2d(in_channels=256, out_channels=256, kernel_size=3),
+        self.last_conv = nn.Sequential(nn.Conv2d(in_channels=128, out_channels=256, kernel_size=3),
                                        nn.BatchNorm2d((256)),
                                        nn.ReLU())
 
-        self.conv_size = ((int(img_size/8)-2)**2)*256
+        self.conv_size = ((int(img_size/4)-2)**2)*256
 
         self.linear1 = self.linear_block(self.conv_size, 1024)
-        self.linear2 = self.linear_block(1024, 128)
-        self.linear_last = nn.Linear(128, label_size)
+        self.linear2 = self.linear_block(1024, 256)
+        self.linear_last = nn.Linear(256, label_size)
 
     def down_block(self, in_channels, out_channels, kernel_size, padding, padding_mode="reflect"):
         try:
@@ -46,7 +45,6 @@ class CNN_Model(nn.Module):
     def forward(self, data):
         try:
             x = self.down_block1(data)
-            x = self.down_block2(x)
             x = self.down_block3(x)
             x = self.last_conv(x)
 
