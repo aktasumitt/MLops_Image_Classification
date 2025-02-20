@@ -139,7 +139,7 @@ class Training():
                 mlflow.set_tag("Pytorch Training Info","Environment image classification training")
                 
                 # Training
-                training_artifacts,signature=self.initiate_training()
+                signature=self.initiate_training()
                 
                 # log the model
                 mlflow.pytorch.log_model(
@@ -149,9 +149,7 @@ class Training():
                     registered_model_name="my_model_name")
                 
                 logger.info("Training is completed. Metrics, parameters and model was saved on MLflow")
-                
-            return training_artifacts
-        
+                        
         except Exception as e:
             ExceptionNetwork(e,sys)
             
