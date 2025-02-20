@@ -77,8 +77,8 @@ stages:
     deps:
     - path: src/components/model/
       hash: md5
-      md5: f40618007f763c932f42883d6d71c708.dir
-      size: 2892
+      md5: 337d274cec98edc6aaf069a130ff9bc7.dir
+      size: 2795
       nfiles: 2
     - path: src/config/
       hash: md5
@@ -101,8 +101,8 @@ stages:
     outs:
     - path: artifacts/model/model.pkl
       hash: md5
-      md5: 0c324a460036cb11476295038aaa8715
-      size: 41992849
+      md5: f5226bf6bb2837128e42f7668d643b34
+      size: 208099616
   training:
     cmd: python -m src.pipeline.training_pipeline
     deps:
@@ -116,8 +116,8 @@ stages:
       size: 121354
     - path: artifacts/model/model.pkl
       hash: md5
-      md5: 0c324a460036cb11476295038aaa8715
-      size: 41992849
+      md5: f5226bf6bb2837128e42f7668d643b34
+      size: 208099616
     - path: src/components/training/
       hash: md5
       md5: 3f341a7dc397f1a58bebb6c35dd574e4.dir
@@ -144,16 +144,16 @@ stages:
     outs:
     - path: callbacks/checkpoints/checkpoint_last.pth.tar
       hash: md5
-      md5: e14429ae26f6d804702fe13d994a415b
-      size: 125952458
+      md5: 5f48be9f20b2809bc3349609940b048f
+      size: 624279775
     - path: callbacks/final_model/final_model.pkl
       hash: md5
-      md5: afa279150f392aa02d5f23ff054e71bf
-      size: 41992917
+      md5: d558a1ec9dd170b164b913b5f6a10075
+      size: 208099673
     - path: results/train_results.json
       hash: md5
-      md5: 4125cea4099c627ff863833cd025a388
-      size: 887
+      md5: 5986ea8b631b9e97d891da8eb3f1078c
+      size: 884
   testing:
     cmd: python -m src.pipeline.test_pipeline
     deps:
@@ -163,8 +163,8 @@ stages:
       size: 936747
     - path: callbacks/final_model/final_model.pkl
       hash: md5
-      md5: afa279150f392aa02d5f23ff054e71bf
-      size: 41992917
+      md5: d558a1ec9dd170b164b913b5f6a10075
+      size: 208099673
     - path: src/components/testing/
       hash: md5
       md5: df1e444b1b52b0549e8067d900dc4b57.dir
@@ -191,5 +191,5 @@ stages:
     outs:
     - path: results/test_results.json
       hash: md5
-      md5: 77aec1ba21d601aaa0680bf19cf82dcc
+      md5: e75c9218a780d423dc4bbb0d8ef54e71
       size: 65
